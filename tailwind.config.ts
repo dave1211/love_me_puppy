@@ -14,9 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Fraunces", "serif"],
-        body: ["Geist Sans", "system-ui", "sans-serif"],
-        mono: ["Geist Mono", "monospace"],
+        display: ["Fredoka One", "cursive"],
+        body: ["Nunito", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,14 +51,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        blush: {
-          50: "hsl(340 20% 99%)",
-          100: "hsl(340 30% 95%)",
-          200: "hsl(340 30% 92%)",
-          500: "hsl(340 82% 65%)",
-          600: "hsl(340 82% 55%)",
-          900: "hsl(340 15% 15%)",
-        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -75,11 +66,6 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        cuddle: "32px",
-      },
-      boxShadow: {
-        layered: "0 0 0 1px rgba(0,0,0,.02), 0 4px 12px -2px rgba(220, 38, 127, .08), 0 12px 24px -4px rgba(220, 38, 127, .04)",
-        "layered-lg": "0 0 0 1px rgba(0,0,0,.02), 0 8px 24px -4px rgba(220, 38, 127, .12), 0 20px 40px -8px rgba(220, 38, 127, .06)",
       },
       keyframes: {
         "accordion-down": {
@@ -90,15 +76,10 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-12px)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        float: "float 3s ease-in-out infinite",
       },
     },
   },

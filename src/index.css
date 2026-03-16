@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,46 +6,47 @@
 
 @layer base {
   :root {
-    --background: 340 20% 99%;
-    --foreground: 340 15% 15%;
+    --background: 30 20% 8%;
+    --foreground: 40 30% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 340 15% 15%;
+    --card: 30 15% 12%;
+    --card-foreground: 40 30% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 340 15% 15%;
+    --popover: 30 15% 12%;
+    --popover-foreground: 40 30% 90%;
 
-    --primary: 340 82% 65%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 38 90% 55%;
+    --primary-foreground: 30 20% 8%;
 
-    --secondary: 340 30% 92%;
-    --secondary-foreground: 340 15% 15%;
+    --secondary: 30 15% 16%;
+    --secondary-foreground: 40 30% 90%;
 
-    --muted: 340 20% 95%;
-    --muted-foreground: 340 10% 50%;
+    --muted: 30 10% 18%;
+    --muted-foreground: 40 15% 55%;
 
-    --accent: 20 90% 70%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 38 90% 55%;
+    --accent-foreground: 30 20% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 340 10% 90%;
-    --input: 340 10% 90%;
-    --ring: 340 82% 65%;
+    --border: 30 10% 20%;
+    --input: 30 10% 20%;
+    --ring: 38 90% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --gold-glow: 0 0 20px rgba(218, 165, 32, 0.3), 0 0 40px rgba(218, 165, 32, 0.1);
+    --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(218, 165, 32, 0.05);
 
-    --shadow-layered: 0 0 0 1px rgba(0,0,0,.02), 0 4px 12px -2px rgba(220, 38, 127, .08), 0 12px 24px -4px rgba(220, 38, 127, .04);
+    --sidebar-background: 30 20% 8%;
+    --sidebar-foreground: 40 30% 90%;
+    --sidebar-primary: 38 90% 55%;
+    --sidebar-primary-foreground: 30 20% 8%;
+    --sidebar-accent: 30 15% 16%;
+    --sidebar-accent-foreground: 40 30% 90%;
+    --sidebar-border: 30 10% 20%;
+    --sidebar-ring: 38 90% 55%;
   }
 }
 
@@ -57,28 +57,60 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Geist Sans', system-ui, -apple-system, sans-serif;
-    letter-spacing: -0.01em;
+    font-family: 'Nunito', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fraunces', serif;
-    letter-spacing: -0.04em;
+    font-family: 'Fredoka One', cursive;
   }
 }
 
 @layer components {
-  .cuddle-card {
-    @apply bg-card rounded-[32px] p-6 md:p-8;
-    box-shadow: var(--shadow-layered);
+  .gold-card {
+    @apply bg-card rounded-2xl p-6;
+    box-shadow: var(--card-shadow);
+    border: 1px solid hsl(38 90% 55% / 0.1);
   }
 
-  .cuddle-container {
-    @apply rounded-[40px] p-4 md:p-8 bg-secondary;
+  .gold-button {
+    @apply inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground font-bold px-8 py-3.5 text-base;
+    box-shadow: var(--gold-glow);
+    transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  .font-mono-data {
-    font-family: 'Geist Mono', monospace;
-    font-variant-numeric: tabular-nums;
+  .gold-button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(218, 165, 32, 0.4), 0 0 60px rgba(218, 165, 32, 0.15);
   }
+
+  .gold-button:active {
+    transform: scale(0.97);
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6;
+  }
+
+  .paw-emoji {
+    @apply text-2xl opacity-20 select-none;
+    animation: float 4s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(218, 165, 32, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(218, 165, 32, 0.5); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }

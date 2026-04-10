@@ -1,71 +1,89 @@
 import { motion } from "framer-motion";
+import { Wallet, DollarSign, Search, Rocket } from "lucide-react";
 
 const steps = [
-  { emoji: "👻", step: "Step 1", title: "Get a Phantom Wallet", desc: "Download Phantom Wallet from phantom.app. It's the easiest Solana wallet to get started." },
-  { emoji: "💰", step: "Step 2", title: "Fund Your Wallet", desc: "Add SOL to your Phantom Wallet. You can buy SOL directly in-app or transfer from an exchange." },
-  { emoji: "🚀", step: "Step 3", title: "Go to Pump.fun", desc: "Visit pump.fun and search for $TANNER. Connect your Phantom Wallet to start buying." },
-  { emoji: "🐾", step: "Step 4", title: "Buy $TANNER!", desc: "Enter the amount of SOL you want to swap for $TANNER and confirm. Welcome to the fluffiest community!" },
+  {
+    number: 1,
+    icon: <Wallet size={22} />,
+    title: "Get a Solana Wallet",
+    description: "Install Phantom or Solflare. Takes 2 minutes.",
+  },
+  {
+    number: 2,
+    icon: <DollarSign size={22} />,
+    title: "Buy SOL",
+    description: "Purchase SOL from any exchange (Coinbase, Binance, Kraken).",
+  },
+  {
+    number: 3,
+    icon: <Search size={22} />,
+    title: "Go to Pump.fun",
+    description: "Visit pump.fun and search for $TANNER or paste the contract address.",
+  },
+  {
+    number: 4,
+    icon: <Rocket size={22} />,
+    title: "Buy & HODL 🚀",
+    description: "Swap your SOL for $TANNER. Welcome to the pack. 🐾",
+  },
 ];
 
-const HowToBuySection = () => {
+export default function HowToBuySection() {
   return (
-    <section id="how-to-buy" className="py-20 px-4">
+    <section id="how-to-buy" className="py-24" style={{ background: "#0c0c0c" }}>
       <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          <h2 className="font-display text-3xl md:text-5xl text-primary mb-3">
-            How to Buy $TANNER
+          <h2 className="font-display text-3xl md:text-5xl text-white mb-4">
+            How to Buy $TANNER 🐾
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Get your paws on $TANNER in 4 easy steps! 🐶
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {steps.map((item, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+          {steps.map((step, i) => (
             <motion.div
-              key={item.step}
-              initial={{ opacity: 0, y: 12 }}
+              key={step.number}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05, ease: [0.23, 1, 0.32, 1] }}
-              className="gold-card"
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.03 }}
+              className="gold-card flex flex-col items-center text-center gap-4"
+              style={{ transition: "all 0.2s ease" }}
             >
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-3xl">{item.emoji}</span>
-                <span className="text-primary/60 text-sm font-bold uppercase tracking-wider">{item.step}</span>
+              {/* Number badge */}
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center font-display text-xl flex-shrink-0"
+                style={{ background: "#F5C842", color: "#0a0a0a" }}
+              >
+                {step.number}
               </div>
-              <h3 className="font-display text-xl text-foreground mb-2">{item.title}</h3>
-              <p className="text-foreground/60 text-sm leading-relaxed">{item.desc}</p>
+              <div style={{ color: "rgba(255,255,255,0.4)" }}>{step.icon}</div>
+              <h3 className="font-display text-lg text-white">{step.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap justify-center gap-4 mt-12"
+          transition={{ delay: 0.5 }}
+          className="text-center"
         >
-          <a href="https://pump.fun/" target="_blank" rel="noopener noreferrer" className="gold-button">
-            🚀 Buy on Pump.fun
-          </a>
-          <a href="https://phantom.app/" target="_blank" rel="noopener noreferrer" className="gold-button bg-secondary text-foreground" style={{ boxShadow: "var(--card-shadow)" }}>
-            👻 Get Phantom Wallet
-          </a>
-          <a href="https://dexscreener.com/" target="_blank" rel="noopener noreferrer" className="gold-button bg-secondary text-foreground" style={{ boxShadow: "var(--card-shadow)" }}>
-            📊 DexScreener
+          <a href="#" className="gold-button text-base px-10 py-4 animate-pulse-glow">
+            Buy $TANNER Now on Pump.fun
           </a>
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default HowToBuySection;
+}

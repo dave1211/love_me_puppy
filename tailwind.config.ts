@@ -15,9 +15,11 @@ export default {
     extend: {
       fontFamily: {
         display: ["Fredoka One", "cursive"],
-        body: ["Nunito", "sans-serif"],
+        body: ["Inter", "sans-serif"],
       },
       colors: {
+        gold: "#F5C842",
+        pink: "#FF3EA5",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

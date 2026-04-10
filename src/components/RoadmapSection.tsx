@@ -2,86 +2,180 @@ import { motion } from "framer-motion";
 
 const phases = [
   {
-    phase: "Phase 1",
-    status: "DONE ✅",
-    statusColor: "text-green-400",
-    title: "Launch & Foundation",
-    items: ["Token launch on Pump.fun", "Website & socials live", "Liquidity locked & contract renounced", "Initial community building"],
+    number: 1,
+    title: "LAUNCH",
+    status: "COMPLETE",
+    statusColor: "#22c55e",
+    emoji: "✅",
+    items: [
+      "Token creation & launch on Pump.fun",
+      "Website & socials live",
+      "LP locked & renounced",
+      "Anti-rug verified",
+    ],
+    active: false,
   },
   {
-    phase: "Phase 2",
-    status: "IN PROGRESS 🔥",
-    statusColor: "text-primary",
-    title: "Community Takeover",
-    items: ["1,000+ holders milestone", "Influencer partnerships & raids", "Meme contest campaigns", "CoinGecko & CMC listings"],
+    number: 2,
+    title: "BOND",
+    status: "IN PROGRESS",
+    statusColor: "#F5C842",
+    emoji: "🔥",
+    items: [
+      "Pump.fun bonding curve completion",
+      "Community raid campaigns",
+      "Influencer partnerships",
+      "First 500 holders",
+    ],
+    active: true,
   },
   {
-    phase: "Phase 3",
+    number: 3,
+    title: "GROW",
     status: "UPCOMING",
-    statusColor: "text-muted-foreground",
-    title: "Utility Expansion",
-    items: ["$TANNER staking rewards", "NFT collection for holders", "Anti-rug scanner tool for community", "Merch store powered by $TANNER"],
+    statusColor: "#666",
+    emoji: "🌱",
+    items: [
+      "1,000+ holders",
+      "CoinGecko & CMC listings",
+      "Anti-Rug Scanner tool goes live",
+      "RCC AI integration launches",
+      "Merch store opens",
+    ],
+    active: false,
   },
   {
-    phase: "Phase 4",
+    number: 4,
+    title: "UTILITY",
     status: "UPCOMING",
-    statusColor: "text-muted-foreground",
-    title: "Global Domination",
-    items: ["CEX listings (Tier 2+)", "Cross-chain bridge", "Tanner DAO governance", "Charity partnerships for dog shelters 🐕"],
+    statusColor: "#666",
+    emoji: "🔧",
+    items: [
+      "Sniper assistant launch",
+      "Wallet tracker live",
+      "NFT collection for $TANNER holders",
+      "$TANNER staking rewards",
+    ],
+    active: false,
   },
   {
-    phase: "Phase 5",
+    number: 5,
+    title: "LEGENDARY",
     status: "UPCOMING",
-    statusColor: "text-muted-foreground",
-    title: "Legendary Status",
-    items: ["Tier 1 CEX listing", "$TANNER ecosystem fund", "Real-world utility integrations", "The fluffiest token on every chain 🐩👑"],
+    statusColor: "#666",
+    emoji: "👑",
+    items: [
+      "Tier 1 CEX listing",
+      "$TANNER DAO governance",
+      "Cross-chain expansion",
+      "Charity partnerships with dog shelters 🐕",
+    ],
+    active: false,
   },
 ];
 
-const RoadmapSection = () => {
+export default function RoadmapSection() {
   return (
-    <section className="py-20 px-4">
+    <section id="roadmap" className="py-24" style={{ background: "#0a0a0a" }}>
       <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <h2 className="font-display text-3xl md:text-5xl text-primary mb-3">Roadmap</h2>
-          <p className="text-muted-foreground">From meme to utility — here's where $TANNER is headed 🚀🐾</p>
+          <h2 className="font-display text-3xl md:text-5xl text-white mb-4">Roadmap 🗺️</h2>
+          <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>
+            From meme to utility — here&apos;s the full plan.
+          </p>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-6">
-          {phases.map((phase, i) => (
-            <motion.div
-              key={phase.phase}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05, ease: [0.23, 1, 0.32, 1] }}
-              className="gold-card"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-primary/60 text-sm font-bold uppercase tracking-wider">{phase.phase}</span>
-                <span className={`text-xs font-bold uppercase tracking-wider ${phase.statusColor}`}>{phase.status}</span>
-              </div>
-              <h3 className="font-display text-xl text-foreground mb-3">{phase.title}</h3>
-              <ul className="space-y-1.5">
-                {phase.items.map((item) => (
-                  <li key={item} className="text-foreground/50 text-sm flex items-start gap-2">
-                    <span className="text-primary/40 mt-0.5">•</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+        <div className="relative max-w-2xl mx-auto">
+          {/* Vertical connecting line */}
+          <div
+            className="absolute left-6 top-6 bottom-6 w-px"
+            style={{
+              background: "linear-gradient(to bottom, #F5C842 0%, rgba(245,200,66,0.08) 100%)",
+            }}
+          />
+
+          <div className="flex flex-col gap-0">
+            {phases.map((phase, i) => (
+              <motion.div
+                key={phase.number}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12, duration: 0.55 }}
+                className="relative pl-16 pb-8 last:pb-0"
+              >
+                {/* Phase number circle */}
+                <div
+                  className="absolute left-0 top-0 w-12 h-12 rounded-full flex items-center justify-center font-display text-lg flex-shrink-0 z-10"
+                  style={{
+                    background: phase.active ? "#F5C842" : "rgba(245,200,66,0.08)",
+                    color: phase.active ? "#0a0a0a" : "#F5C842",
+                    border: `2px solid ${phase.active ? "#F5C842" : "rgba(245,200,66,0.25)"}`,
+                  }}
+                >
+                  {phase.number}
+                </div>
+
+                {/* Card */}
+                <div
+                  className="gold-card"
+                  style={
+                    phase.active
+                      ? {
+                          border: "1px solid rgba(245,200,66,0.55)",
+                          boxShadow: "0 0 24px rgba(245,200,66,0.1)",
+                        }
+                      : { opacity: 0.78 }
+                  }
+                >
+                  <div className="flex items-center gap-3 mb-3 flex-wrap">
+                    <span className="text-xl">{phase.emoji}</span>
+                    <h3 className="font-display text-xl text-white">
+                      Phase {phase.number} — {phase.title}
+                    </h3>
+                    <span
+                      className="text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"
+                      style={{
+                        background: `${phase.statusColor}18`,
+                        color: phase.statusColor,
+                        border: `1px solid ${phase.statusColor}40`,
+                      }}
+                    >
+                      {phase.active && (
+                        <span
+                          className="w-1.5 h-1.5 rounded-full animate-live-pulse"
+                          style={{ background: phase.statusColor }}
+                        />
+                      )}
+                      {phase.status}
+                    </span>
+                  </div>
+                  <ul className="flex flex-col gap-1.5">
+                    {phase.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-sm"
+                        style={{ color: "rgba(255,255,255,0.6)" }}
+                      >
+                        <span className="text-xs mt-0.5" style={{ color: phase.statusColor }}>
+                          ▸
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default RoadmapSection;
+}

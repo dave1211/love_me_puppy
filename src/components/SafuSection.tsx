@@ -1,68 +1,95 @@
 import { motion } from "framer-motion";
 
-const safuItems = [
-  { badge: "LOCKED 🔒", title: "Liquidity Locked", desc: "Liquidity pool is permanently locked, ensuring funds can never be drained. Verified on-chain for full transparency." },
-  { badge: "RENOUNCED ✅", title: "Contract Renounced", desc: "Ownership has been fully renounced. No one can modify the contract, change taxes, or mint new tokens. Ever." },
-  { badge: "SAFE 🛡️", title: "Anti-Rug Tokenomics", desc: "No mint function. No hidden fees. Max wallet limits in place to prevent whale manipulation. Pure community token." },
-  { badge: "AUDITED 🔍", title: "Fully Transparent", desc: "Open-source contract available for anyone to audit. All transactions visible on-chain. Nothing to hide." },
+const cards = [
+  {
+    icon: "🔒",
+    title: "Liquidity Locked",
+    description: "LP is permanently locked. Funds cannot be drained. Verified on-chain.",
+  },
+  {
+    icon: "✅",
+    title: "Contract Renounced",
+    description: "No one can modify the contract, change fees, or mint tokens. Ever.",
+  },
+  {
+    icon: "🚫",
+    title: "No Mint Function",
+    description: "The supply is fixed at 1 billion $TANNER. No inflation. No surprises.",
+  },
+  {
+    icon: "🔍",
+    title: "Fully Transparent",
+    description: "Open-source contract. All transactions on-chain. Nothing to hide.",
+  },
 ];
 
-const trustItems = ["LP Locked", "Ownership Renounced", "No Mint Function", "Open Source"];
+const trustBadges = ["LP Locked", "Renounced", "No Mint", "Open Source", "Verified"];
 
-const SafuSection = () => {
+export default function SafuSection() {
   return (
-    <section className="py-20 px-4">
+    <section id="safu" className="py-24" style={{ background: "#0c0c0c" }}>
       <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-          className="text-center mb-4"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          <span className="text-primary/70 font-semibold text-sm uppercase tracking-wider">SAFU Verified</span>
-          <h2 className="font-display text-3xl md:text-5xl text-primary mt-2 mb-3">Built Anti-Rug From Day One</h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            $TANNER is designed so you can invest with confidence. No rugs, no tricks — just fluffy gains. 🐾
+          <h2 className="font-display text-3xl md:text-5xl text-white mb-4">
+            Built Anti-Rug From Day One 🛡️
+          </h2>
+          <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>
+            Every safety mechanism is live, verified, and on-chain. Invest with confidence.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-12">
-          {safuItems.map((item, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10 max-w-4xl mx-auto">
+          {cards.map((card, i) => (
             <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 12 }}
+              key={card.title}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05, ease: [0.23, 1, 0.32, 1] }}
-              className="gold-card"
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.02 }}
+              className="gold-card flex gap-4"
+              style={{ transition: "all 0.2s ease" }}
             >
-              <span className="text-xs font-bold text-primary/70 uppercase tracking-wider">{item.badge}</span>
-              <h3 className="font-display text-xl text-foreground mt-2 mb-2">{item.title}</h3>
-              <p className="text-foreground/50 text-sm leading-relaxed">{item.desc}</p>
+              <span className="text-4xl flex-shrink-0 mt-0.5">{card.icon}</span>
+              <div>
+                <h3 className="font-display text-xl text-white mb-2">{card.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+                  {card.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
 
+        {/* Trust badges */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="gold-card max-w-2xl mx-auto mt-10 text-center"
+          transition={{ delay: 0.4 }}
+          className="flex flex-wrap justify-center gap-3"
         >
-          <p className="text-primary/70 font-semibold text-sm mb-3">🛡️ Community Trust Score</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {trustItems.map((item) => (
-              <span key={item} className="bg-primary/10 text-primary text-xs font-bold px-3 py-1.5 rounded-full">
-                {item}
-              </span>
-            ))}
-          </div>
+          {trustBadges.map((badge) => (
+            <span
+              key={badge}
+              className="text-sm font-bold px-5 py-2 rounded-full"
+              style={{
+                background: "rgba(245,200,66,0.1)",
+                border: "1px solid rgba(245,200,66,0.38)",
+                color: "#F5C842",
+              }}
+            >
+              {badge}
+            </span>
+          ))}
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default SafuSection;
+}

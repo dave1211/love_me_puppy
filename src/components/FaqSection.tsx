@@ -1,75 +1,95 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const faqs = [
-  { q: "What is $TANNER?", a: "$TANNER is a community-driven meme coin on the Solana blockchain, inspired by Tanner — a fluffy brown poodle from Sydney, Australia. It celebrates the joy dogs bring to our lives." },
-  { q: "How do I buy $TANNER?", a: "Get a Phantom Wallet, fund it with SOL, then visit Pump.fun to swap SOL for $TANNER. It's that simple!" },
-  { q: "What are the tokenomics?", a: "Total supply is 1 billion $TANNER. 50% goes to the liquidity pool, 20% to marketing & community, 10% to the team, and 20% is burned. Zero tax on all transactions." },
-  { q: "Is $TANNER safe? Can it be rugged?", a: "Liquidity is permanently locked, the contract is renounced, there's no mint function, and the code is open source. $TANNER is built anti-rug from day one." },
-  { q: "Who is behind $TANNER?", a: "$TANNER is a community-driven project inspired by Tanner the poodle and his owner Wayne from Sydney, Australia." },
-  { q: "Will $TANNER be listed on exchanges?", a: "CEX listings are planned in the roadmap. First CoinGecko and CMC, then Tier 2 and eventually Tier 1 exchanges." },
-  { q: "How can I join the $TANNER community?", a: "Follow us on Twitter @welovetanner25, Instagram @love_me_puppy, and join our Telegram group!" },
-  { q: "Does $TANNER have any utility?", a: "Utility is being developed including staking rewards, an NFT collection, an anti-rug scanner tool, and a merch store." },
+  {
+    q: "What is $TANNER?",
+    a: "A community meme coin on Solana inspired by Tanner the dog. Anti-rug, LP locked, and contract renounced from day one.",
+  },
+  {
+    q: "Is it safe?",
+    a: "LP is locked, contract is renounced, and no mint function exists. All safety mechanisms are verified on-chain. You can verify everything yourself.",
+  },
+  {
+    q: "How do I buy?",
+    a: "Get Phantom wallet, buy SOL, go to pump.fun, search $TANNER, and swap. Takes about 5 minutes from start to finish.",
+  },
+  {
+    q: "What is the total supply?",
+    a: "1,000,000,000 $TANNER. Fixed forever. No inflation, no surprises.",
+  },
+  {
+    q: "Are there any taxes?",
+    a: "Zero. No buy tax, no sell tax. Pure community token with no fees.",
+  },
+  {
+    q: "What is pump.fun bonding?",
+    a: "When a token reaches 100% of its bonding curve on pump.fun, liquidity migrates to Raydium automatically. That is our key milestone — once bonded, $TANNER is on Raydium for life.",
+  },
+  {
+    q: "What are the tools?",
+    a: "Anti-rug scanner, AI coin analyst (RCC), sniper assistant, and wallet tracker — all free for $TANNER holders. Built to give the community an edge.",
+  },
+  {
+    q: "When merch?",
+    a: "Merch store launches post-bond. Keep buying to make it happen. 🚀",
+  },
 ];
 
-const FaqSection = () => {
-  const [open, setOpen] = useState<number | null>(null);
-
+export default function FaqSection() {
   return (
-    <section className="py-20 px-4">
+    <section id="faq" className="py-24" style={{ background: "#0a0a0a" }}>
       <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          <h2 className="font-display text-3xl md:text-5xl text-primary mb-3">FAQ</h2>
-          <p className="text-muted-foreground">Got questions? We've got answers. 🐩</p>
+          <h2 className="font-display text-3xl md:text-5xl text-white mb-4">FAQ</h2>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto space-y-3">
-          {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.03, ease: [0.23, 1, 0.32, 1] }}
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="gold-card w-full text-left flex items-center justify-between gap-4 cursor-pointer"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="max-w-2xl mx-auto"
+        >
+          <Accordion type="single" collapsible className="flex flex-col gap-3">
+            {faqs.map((faq, i) => (
+              <AccordionItem
+                key={i}
+                value={`item-${i}`}
+                className="rounded-xl overflow-hidden border-0"
+                style={{
+                  border: "1px solid rgba(245,200,66,0.14)",
+                  background: "rgba(255,255,255,0.02)",
+                }}
               >
-                <h3 className="font-display text-base text-foreground">{faq.q}</h3>
-                <ChevronDown
-                  className={`h-5 w-5 text-primary/50 flex-shrink-0 transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}
-                  strokeWidth={1.5}
-                />
-              </button>
-              <AnimatePresence>
-                {open === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 pb-4 pt-2 text-foreground/50 text-sm leading-relaxed">
-                      {faq.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
+                <AccordionTrigger
+                  className="px-5 py-4 text-white text-sm font-semibold text-left hover:no-underline hover:text-white [&[data-state=open]]:text-yellow-300"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent
+                  className="px-5 pb-4 text-sm leading-relaxed"
+                  style={{ color: "rgba(255,255,255,0.58)" }}
+                >
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default FaqSection;
+}

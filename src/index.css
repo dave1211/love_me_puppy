@@ -160,6 +160,11 @@
   animation: shimmer 3.5s linear infinite;
 }
 
+/* Offset anchor scroll so fixed navbar (64px) doesn't cover section headings */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 .animate-live-pulse {
   animation: live-pulse 1.2s ease-in-out infinite;
 }

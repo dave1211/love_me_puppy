@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Label, ResponsiveContainer } from "recharts";
 
 const data = [
   {
@@ -40,7 +40,7 @@ export default function TokenomicsSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Chart */}
+          {/* Chart with centre label */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -64,6 +64,34 @@ export default function TokenomicsSection() {
                   {data.map((entry, index) => (
                     <Cell key={index} fill={entry.color} stroke="transparent" />
                   ))}
+                  <Label
+                    content={({ viewBox }) => {
+                      const { cx, cy } = viewBox as { cx: number; cy: number };
+                      return (
+                        <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle">
+                          <tspan
+                            x={cx}
+                            dy="-0.4em"
+                            fontSize="22"
+                            fill="#F5C842"
+                            fontFamily="Fredoka One, cursive"
+                            fontWeight="bold"
+                          >
+                            1B
+                          </tspan>
+                          <tspan
+                            x={cx}
+                            dy="1.5em"
+                            fontSize="12"
+                            fill="rgba(255,255,255,0.45)"
+                            fontFamily="Inter, sans-serif"
+                          >
+                            $TANNER
+                          </tspan>
+                        </text>
+                      );
+                    }}
+                  />
                 </Pie>
                 <Tooltip
                   contentStyle={{

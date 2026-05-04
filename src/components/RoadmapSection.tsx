@@ -92,11 +92,15 @@ export default function RoadmapSection() {
         </motion.div>
 
         <div className="relative max-w-2xl mx-auto">
-          {/* Vertical connecting line */}
+          {/* Dashed vertical line with paw print markers */}
           <div
-            className="absolute left-6 top-6 bottom-6 w-px"
+            className="absolute"
             style={{
-              background: "linear-gradient(to bottom, #F5C842 0%, rgba(245,200,66,0.08) 100%)",
+              left: "23px",
+              top: "24px",
+              bottom: "0",
+              borderLeft: "2px dashed rgba(245,200,66,0.28)",
+              zIndex: 0,
             }}
           />
 
@@ -108,7 +112,7 @@ export default function RoadmapSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12, duration: 0.55 }}
-                className="relative pl-16 pb-8 last:pb-0"
+                className="relative pl-16 pb-10 last:pb-0"
               >
                 {/* Phase number circle */}
                 <div
@@ -122,9 +126,24 @@ export default function RoadmapSection() {
                   {phase.number}
                 </div>
 
+                {/* Paw marker mid-way between this phase and the next */}
+                {i < phases.length - 1 && (
+                  <span
+                    className="absolute text-base select-none"
+                    style={{
+                      left: "15px",
+                      bottom: "14px",
+                      color: "rgba(245,200,66,0.35)",
+                      zIndex: 10,
+                    }}
+                  >
+                    🐾
+                  </span>
+                )}
+
                 {/* Card */}
                 <div
-                  className="gold-card"
+                  className="gold-card relative z-10"
                   style={
                     phase.active
                       ? {

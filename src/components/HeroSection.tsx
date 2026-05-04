@@ -62,7 +62,7 @@ export default function HeroSection() {
       />
 
       <div className="section-container relative z-10 flex flex-col items-center text-center gap-7 pt-28 pb-20">
-        {/* Tanner hero image */}
+        {/* Tanner hero image — fetchPriority high = LCP priority */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -80,6 +80,7 @@ export default function HeroSection() {
               src={tannerHero}
               alt="Tanner the dog"
               className="w-full h-full object-cover rounded-full"
+              fetchPriority="high"
             />
           </div>
         </motion.div>
@@ -142,17 +143,27 @@ export default function HeroSection() {
           </a>
         </motion.div>
 
-        {/* Live ticker — flat array × 2 so translateX(-50%) is exactly one copy width */}
+        {/* Live ticker — flat array × 2, edge-faded for premium feel */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.72, duration: 0.5 }}
-          className="w-full max-w-3xl overflow-hidden rounded-xl"
+          className="w-full max-w-3xl overflow-hidden rounded-xl relative"
           style={{
             border: "1px solid rgba(245,200,66,0.18)",
             background: "rgba(245,200,66,0.04)",
           }}
         >
+          {/* Left edge fade */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-14 pointer-events-none z-10"
+            style={{ background: "linear-gradient(to right, #0a0a0a 0%, transparent 100%)" }}
+          />
+          {/* Right edge fade */}
+          <div
+            className="absolute right-0 top-0 bottom-0 w-14 pointer-events-none z-10"
+            style={{ background: "linear-gradient(to left, #0a0a0a 0%, transparent 100%)" }}
+          />
           <div className="py-2.5 overflow-hidden">
             <div
               className="animate-marquee text-sm"

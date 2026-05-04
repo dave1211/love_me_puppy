@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogContent,
@@ -90,6 +91,14 @@ export default function ToolsSection() {
       setNotes("");
       setLoading(false);
       setModalOpen(true);
+    } else if (action === "waitlist") {
+      toast("You're on the waitlist! 🐾", {
+        description: "We'll notify you when this tool goes live. Stay tuned.",
+      });
+    } else if (action === "scan") {
+      toast("Anti-Rug Scanner launching soon 🕵️", {
+        description: "Full on-chain scanning goes live at bond. Watch this space.",
+      });
     }
   };
 

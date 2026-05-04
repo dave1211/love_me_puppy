@@ -31,12 +31,20 @@ export default function CommunitySection() {
       className="py-24 relative overflow-hidden"
       style={{ background: "#0c0c0c" }}
     >
-      {/* Subtle animated gradient background */}
+      {/* Animated gradient layers */}
+      <div
+        className="absolute inset-0 pointer-events-none animate-community-glow"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 110%, rgba(245,200,66,0.08) 0%, transparent 65%)",
+        }}
+      />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 100%, rgba(245,200,66,0.05) 0%, transparent 70%)",
+            "radial-gradient(ellipse at 20% 50%, rgba(255,62,165,0.04) 0%, transparent 55%)",
+          animation: "community-glow 13s ease-in-out infinite reverse",
         }}
       />
 

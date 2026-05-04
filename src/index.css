@@ -168,3 +168,18 @@ section[id] {
 .animate-live-pulse {
   animation: live-pulse 1.2s ease-in-out infinite;
 }
+
+@keyframes community-glow {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18) translateY(-6%);
+  }
+}
+
+.animate-community-glow {
+  animation: community-glow 9s ease-in-out infinite;
+}

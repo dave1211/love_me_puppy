@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -15,6 +15,23 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("");
+
+  useEffect(() => {
+    const sectionIds = navLinks.map((l) => l.href.slice(1));
+    const handleScroll = () => {
+      const scrollY = window.scrollY + 100;
+      let current = "";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) current = `#${id}`;
+      }
+      setActiveHref(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.nav
@@ -41,18 +58,27 @@ export default function Navbar() {
 
         {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-7">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-medium transition-colors"
-              style={{ color: "rgba(255,255,255,0.65)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeHref === link.href;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm font-medium transition-colors relative"
+                style={{ color: isActive ? "#F5C842" : "rgba(255,255,255,0.65)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = isActive ? "#F5C842" : "rgba(255,255,255,0.65)")}
+              >
+                {link.label}
+                {isActive && (
+                  <span
+                    className="absolute -bottom-1 left-0 right-0 h-px rounded-full"
+                    style={{ background: "#F5C842" }}
+                  />
+                )}
+              </a>
+            );
+          })}
         </div>
 
         {/* CTA Button */}
@@ -93,7 +119,7 @@ export default function Navbar() {
                     onClick={() => setOpen(false)}
                     className="text-base py-3 border-b transition-colors"
                     style={{
-                      color: "rgba(255,255,255,0.75)",
+                      color: activeHref === link.href ? "#F5C842" : "rgba(255,255,255,0.75)",
                       borderColor: "rgba(255,255,255,0.06)",
                     }}
                   >

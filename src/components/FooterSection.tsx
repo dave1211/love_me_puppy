@@ -76,7 +76,7 @@ export default function FooterSection() {
             color: "rgba(255,255,255,0.28)",
           }}
         >
-          © 2025 $TANNER. Community token. Not financial advice. DYOR. 🐾
+          © 2026 $TANNER. Community token. Not financial advice. DYOR. 🐾
         </div>
       </div>
     </footer>

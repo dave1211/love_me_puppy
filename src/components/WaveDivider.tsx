@@ -1,16 +1,17 @@
 interface WaveDividerProps {
+  fromColor?: string;
   toColor?: string;
-  flip?: boolean;
 }
 
-export default function WaveDivider({ toColor = "#0c0c0c", flip = false }: WaveDividerProps) {
+export default function WaveDivider({ fromColor = "transparent", toColor = "#0c0c0c" }: WaveDividerProps) {
   return (
     <div
       className="w-full overflow-hidden leading-none"
       style={{
         height: "56px",
         marginBottom: "-1px",
-        transform: flip ? "rotate(180deg)" : "none",
+        background: fromColor,
+        flexShrink: 0,
       }}
     >
       <svg
@@ -20,7 +21,7 @@ export default function WaveDivider({ toColor = "#0c0c0c", flip = false }: WaveD
         style={{ display: "block", width: "100%", height: "100%" }}
       >
         <path
-          d="M0,18 C150,56 350,0 600,28 C850,56 1050,0 1200,18 L1200,56 L0,56 Z"
+          d="M0,18 C180,56 380,0 600,28 C820,56 1020,0 1200,18 L1200,56 L0,56 Z"
           fill={toColor}
         />
       </svg>

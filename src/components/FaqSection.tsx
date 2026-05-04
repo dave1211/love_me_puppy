@@ -67,20 +67,20 @@ export default function FaqSection() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="rounded-xl overflow-hidden border-0"
+                className="rounded-xl overflow-hidden border-b-0"
                 style={{
                   border: "1px solid rgba(245,200,66,0.14)",
                   background: "rgba(255,255,255,0.02)",
                 }}
               >
                 <AccordionTrigger
-                  className="px-5 py-4 text-white text-sm font-semibold text-left hover:no-underline hover:text-white [&[data-state=open]]:text-yellow-300"
+                  className="px-5 py-4 text-white text-sm font-semibold text-left hover:no-underline hover:text-white data-[state=open]:text-yellow-400 [&[data-state=open]>svg]:text-yellow-400 [&[data-state=open]>svg]:rotate-180"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   {faq.q}
                 </AccordionTrigger>
                 <AccordionContent
-                  className="px-5 pb-4 text-sm leading-relaxed"
+                  className="px-5 text-sm leading-relaxed"
                   style={{ color: "rgba(255,255,255,0.58)" }}
                 >
                   {faq.a}

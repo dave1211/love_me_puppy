@@ -19,23 +19,23 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <StatsBar />
-      <WaveDivider toColor="#0a0a0a" />
+      {/* About shares #0a0a0a with hero/statsbar — no wave needed */}
       <AboutSection />
-      <WaveDivider toColor="#0c0c0c" />
+      <WaveDivider fromColor="#0a0a0a" toColor="#0c0c0c" />
       <SafuSection />
-      <WaveDivider toColor="#0a0a0a" />
+      <WaveDivider fromColor="#0c0c0c" toColor="#0a0a0a" />
       <TokenomicsSection />
-      <WaveDivider toColor="#0c0c0c" />
+      <WaveDivider fromColor="#0a0a0a" toColor="#0c0c0c" />
       <HowToBuySection />
-      <WaveDivider toColor="#0a0a0a" />
+      <WaveDivider fromColor="#0c0c0c" toColor="#0a0a0a" />
       <ToolsSection />
-      <WaveDivider toColor="#0c0c0c" />
+      <WaveDivider fromColor="#0a0a0a" toColor="#0c0c0c" />
       <MerchSection />
-      <WaveDivider toColor="#0a0a0a" />
+      <WaveDivider fromColor="#0c0c0c" toColor="#0a0a0a" />
       <RoadmapSection />
-      <WaveDivider toColor="#0c0c0c" />
+      <WaveDivider fromColor="#0a0a0a" toColor="#0c0c0c" />
       <CommunitySection />
-      <WaveDivider toColor="#0a0a0a" />
+      <WaveDivider fromColor="#0c0c0c" toColor="#0a0a0a" />
       <FaqSection />
       <FooterSection />
     </div>

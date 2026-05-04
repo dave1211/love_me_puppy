@@ -1,6 +1,21 @@
 import { motion } from "framer-motion";
 import tannerHero from "@/assets/tanner-hero.jpg";
 
+const tickerItems = [
+  "🔥 Pump.fun Live",
+  "|",
+  "1B Supply",
+  "|",
+  "🔒 LP Locked",
+  "|",
+  "✅ Contract Renounced",
+  "|",
+  "🛡️ Anti-Rug Verified",
+  "|",
+  "CA: TBA — Launching on Pump.fun Soon",
+  "|",
+];
+
 const floatingPaws = [
   { top: "12%", left: "4%", delay: "0s", size: "2rem" },
   { top: "22%", left: "91%", delay: "0.7s", size: "1.5rem" },
@@ -127,7 +142,7 @@ export default function HeroSection() {
           </a>
         </motion.div>
 
-        {/* Live ticker */}
+        {/* Live ticker — flat array × 2 so translateX(-50%) is exactly one copy width */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -138,36 +153,20 @@ export default function HeroSection() {
             background: "rgba(245,200,66,0.04)",
           }}
         >
-          <div className="py-2.5 px-4 overflow-hidden whitespace-nowrap">
-            <span className="animate-marquee text-sm" style={{ color: "rgba(255,255,255,0.72)" }}>
-              {/* Duplicate content for seamless loop */}
-              <span className="inline-flex gap-10 pr-10">
-                <span>🔥 Pump.fun Live</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>1B Supply</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>🔒 LP Locked</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>✅ Contract Renounced</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>🛡️ Anti-Rug Verified</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>CA: TBA — Launching on Pump.fun Soon</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>🔥 Pump.fun Live</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>1B Supply</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>🔒 LP Locked</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>✅ Contract Renounced</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>🛡️ Anti-Rug Verified</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-                <span>CA: TBA — Launching on Pump.fun Soon</span>
-                <span style={{ color: "rgba(245,200,66,0.4)" }}>|</span>
-              </span>
-            </span>
+          <div className="py-2.5 overflow-hidden">
+            <div
+              className="animate-marquee text-sm"
+              style={{ color: "rgba(255,255,255,0.72)", gap: "2.5rem" }}
+            >
+              {[...tickerItems, ...tickerItems].map((item, i) => (
+                <span
+                  key={i}
+                  style={item === "|" ? { color: "rgba(245,200,66,0.35)" } : undefined}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

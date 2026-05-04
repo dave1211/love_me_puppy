@@ -18,4 +18,24 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("recharts") || id.includes("d3-") || id.includes("victory-")) {
+            return "charts";
+          }
+          if (id.includes("framer-motion")) {
+            return "animation";
+          }
+          if (id.includes("@radix-ui")) {
+            return "radix";
+          }
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
+  },
 }));
